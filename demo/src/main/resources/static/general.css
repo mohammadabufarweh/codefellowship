@@ -1,0 +1,15 @@
+html{
+
+}
+.label{
+    color: black;
+    align-items:center;
+    display:flex;
+    justify-content: center;
+}
+.form{
+    background: darkseagreen;
+    align-items:center;
+    text-align:center;;
+    border: 2px solid #000;
+}
