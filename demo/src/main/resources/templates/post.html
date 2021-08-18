@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+  <div th:replace="./fragment/userfragment" :: myuserheader></div>
+</header>
+<form action="/post" method='POST'>
+
+  <table>
+    <tr>
+      <td><input type='hidden' name='userId' th:value="${userId}"></td>
+    </tr>
+    <tr>
+      <td>Body:</td>
+      <td><input type='text' name='body' /></td>
+    </tr>
+    <tr>
+      <td><input name="submit" type="submit" value="submit" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="user.css">
+</head>
+<body>
+<header>
+    <div th:replace="./fragment/userfragment" :: myuserheader></div>
+</header>
+
+<div class="containerOne">
+
+    <img class="img" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"/>
+    <div class="containeroTwo" >
+    <h2><span th:text="${user.username}"></span></h2>
+<h2>First Name : <span th:text="${user.firstName}"></span></h2>
+<h2>Last Name : <span th:text="${user.lastName}"></span></h2>
+<h2 > Date Of Brith : <span th:text="${user.dateOfBirth}"></span></h2>
+<h2>Bio : <span th:text="${user.bio}"></span></h2>
+        <a href="/post">Create Post </a>
+<div>
+    <ul th:each="post : ${user.posts}" >
+        <li class="list-group-item disabled">Post :<span th:text="${post.body}"></span><br/>
+        <li class="list-group-item disabled">Time :<span th:text="${post.createdAt}"></span><br/>
+
+    </li>
+    <br/>
+    </ul>
+</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.containerOne{
+    background: #a7d9a7;
+    align-items:center;
+    text-align:center;
+    border: 2px solid #000;
+    display: grid;
+    grid-template-columns:  300px 1fr ;
+    gap: 10px;
+}
+
+h2{
+    color: black;
+    align-items:center;
+
+}
+.img{
+    width: 100%;
+
+}

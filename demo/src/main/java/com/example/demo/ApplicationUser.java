@@ -1,48 +1,100 @@
 package com.example.demo;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer  id;
 
 
     @Column(unique = true)
-    private String password;
     private String username;
-//    private String bio;
-//    private String firstName;
-//    private String lastName;
-//    private String dateOfBirth;
+
+    private String password;
 
 
-    public ApplicationUser(String password, String username) {
-        this.password = password;
-        this.username = username;
+    private String firstName;
+    private String lastName;
+    private String dateOfBirth;
+    private String bio;
+
+    @OneToMany(mappedBy = "applicationUser")
+    List<Post> posts;
+
+    public List<Post> getPosts() {
+        return posts;
     }
+
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "follow",
+            joinColumns = @JoinColumn(name = "followUser"),
+            inverseJoinColumns = @JoinColumn(name = "userFollowing"))
+    List<ApplicationUser> followUser;
+
+
+    @ManyToMany(mappedBy = "followUser")
+    List<ApplicationUser> userFollowing;
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<ApplicationUser> getFollowUser() {
+        return followUser;
+    }
+
+    public void setFollowUser(List<ApplicationUser> followUser) {
+        this.followUser = followUser;
+    }
+
+    public List<ApplicationUser> getUserFollowing() {
+        return userFollowing;
+    }
+
+    public void setUserFollowing(List<ApplicationUser> userFollowing) {
+        this.userFollowing = userFollowing;
+    }
+
     public ApplicationUser(){
 
     }
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public String getLastName() {
-//        return lastName;
-//    }
-//
-//    public String getDateOfBirth() {
-//        return dateOfBirth;
-//    }
-//
-//    public String getBio() {
-//        return bio;
-//    }
+
+    public ApplicationUser(String username, String password, String firstName, String lastName,String dateOfBirth, String bio) {
+        this.username=username;
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.dateOfBirth=dateOfBirth;
+        this.bio=bio;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getBio() {
+        return bio;
+    }
 
 
     public void setPassword(String password) {
@@ -56,12 +108,6 @@ public class ApplicationUser implements UserDetails {
     public Integer getId() {
         return id;
     }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
     @Override
     public String getPassword() {
         return password;
@@ -71,6 +117,15 @@ public class ApplicationUser implements UserDetails {
     public String getUsername() {
         return username;
     }
+
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+
 
     @Override
     public boolean isAccountNonExpired() {
