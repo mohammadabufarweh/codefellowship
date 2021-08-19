@@ -8,4 +8,6 @@ public interface PostRepository extends CrudRepository <Post,Integer> {
     static List<Post> findPostById(Integer id) {
         return null;
     }
+
+
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="user:${users}" >
+    <h2><a th:href= "@{/users/{id}(id=${user.id})}"> visit profile</a></h2>
+
+    <h2> <span th:text="${user.username}" /></h2>
+    <h2> <span th:text="${user.bio}" /></h2>
+    <div th:each="post:${currentUser.posts}" >
+    <h2>Post Body <span th:text="${post.body}" /></h2>
+    <h2>Date Created <span th:text="${post.createdAt}" /></h2>
+</div>
+</div>
+
+</body>
+</html>
+
+

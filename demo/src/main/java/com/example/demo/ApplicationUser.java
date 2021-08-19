@@ -17,8 +17,6 @@ public class ApplicationUser implements UserDetails {
     private String username;
 
     private String password;
-
-
     private String firstName;
     private String lastName;
     private String dateOfBirth;
@@ -35,8 +33,8 @@ public class ApplicationUser implements UserDetails {
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "follow",
-            joinColumns = @JoinColumn(name = "followUser"),
-            inverseJoinColumns = @JoinColumn(name = "userFollowing"))
+            joinColumns = @JoinColumn(name = "followUser_Id"),
+            inverseJoinColumns = @JoinColumn(name = "userFollowing_Id"))
     List<ApplicationUser> followUser;
 
 
@@ -104,7 +102,9 @@ public class ApplicationUser implements UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    public void addFollower(ApplicationUser applicationUser){
+        followUser.add(applicationUser);
+    }
     public Integer getId() {
         return id;
     }
