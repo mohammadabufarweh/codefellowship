@@ -14,4 +14,12 @@
 3. ability for users to log in to your app.
 4. When a user is logged in, the app should display the user’s username on every page .
 
-3. Adding a Post entity to your app.A Post has a body and a createdAt timestamp.
+5. Adding a Post entity to your app.A Post has a body and a createdAt timestamp.
+
+
+# Lab 18
+Allowing users to follow other users. Following a user means that their posts show up in the logged-in user’s feed, where they can see what all of their followed users have posted recently.
+On a user profile page that does NOT belong to the currently logged-in user, display a “Follow” button. When a user clicks that follow button, the logged-in user is now following the viewed-profile-page user.
+A user can visit a url (/feed) to view all of the posts from the users that they follow.
+
+
